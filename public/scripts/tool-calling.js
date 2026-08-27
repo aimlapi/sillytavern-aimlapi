@@ -580,7 +580,13 @@ export class ToolManager {
             }
 
             if (typeof deltaValue === 'string') {
-                if (typeof targetValue === 'string') {
+                // `id`, `name`, `type` are sent in full by some providers on every
+                // streaming chunk; concatenating them would duplicate the value.
+                if (key === 'id' || key === 'name' || key === 'type') {
+                    if (!targetValue) {
+                        target[key] = deltaValue;
+                    }
+                } else if (typeof targetValue === 'string') {
                     // Concatenate strings
                     target[key] = targetValue + deltaValue;
                 } else {
@@ -632,7 +638,7 @@ export class ToolManager {
                 case chat_completion_sources.MISTRALAI:
                     return currentModel.capabilities?.function_calling;
                 case chat_completion_sources.AIMLAPI:
-                    return currentModel.features?.includes('openai/chat-completion.function');
+                    return currentModel.capabilities?.includes('tools');
                 case chat_completion_sources.CHUTES:
                     return currentModel.supported_features?.includes('tools');
                 case chat_completion_sources.ELECTRONHUB:
