@@ -368,6 +368,7 @@ export const AIMLAPI_HEADERS = {
     'HTTP-Referer': 'https://sillytavern.app',
     'X-Title': 'SillyTavern',
     'X-AIMLAPI-Source': 'agent/sillytavern',
+    'X-AIMLAPI-Partner-ID': 'part_B0LgzzGb6W3wRBimKvaTvyrd',
 };
 
 export const FEATHERLESS_HEADERS = {
