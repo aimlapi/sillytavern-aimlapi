@@ -456,7 +456,7 @@ const default_settings = {
     nanogpt_provider: '',
     nanogpt_payg_override: false,
     deepseek_model: 'deepseek-v4-flash',
-    aimlapi_model: 'chatgpt-4o-latest',
+    aimlapi_model: 'openai/gpt-5.6-terra',
     xai_model: 'grok-3-beta',
     pollinations_model: 'openai',
     pollinations_endpoint: POLLINATIONS_ENDPOINT.AUTHENTICATED,
@@ -6298,7 +6298,7 @@ export function isImageInliningSupported() {
             // TODO: xAI's /models endpoint doesn't return modality info
             return visionSupportedModels.some(model => oai_settings.xai_model.includes(model));
         case chat_completion_sources.AIMLAPI:
-            return (Array.isArray(model_list) && model_list.find(m => m.id === oai_settings.aimlapi_model)?.features?.includes('openai/chat-completion.vision'));
+            return (Array.isArray(model_list) && model_list.find(m => m.id === oai_settings.aimlapi_model)?.capabilities?.includes('vision'));
         case chat_completion_sources.CHUTES:
             return (Array.isArray(model_list) && model_list.find(m => m.id === oai_settings.chutes_model)?.input_modalities?.includes('image'));
         case chat_completion_sources.ELECTRONHUB:
