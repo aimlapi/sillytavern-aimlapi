@@ -2082,7 +2082,7 @@ function saveModelList(data) {
     }
 
     if (oai_settings.chat_completion_source == chat_completion_sources.AIMLAPI) {
-        model_list = model_list.filter(m => m.type === 'chat-completion');
+        model_list = model_list.filter(m => m.type === 'openai/chat-completions');
         model_list = sortModelsBy(model_list, oai_settings.sort_models, chat_completion_sources.AIMLAPI);
         $('#model_aimlapi_select').empty();
 
